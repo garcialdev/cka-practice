@@ -2,5 +2,6 @@
 
 Git repository for CKA studies
 
-git config user.name "Luis Garcia"
-git config user.email "lg@truthbytes.me"
+I wil be updating this repository with things that I have learned and am currently working on.
+
+
