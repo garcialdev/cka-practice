@@ -19,7 +19,8 @@ kubectl get pod <pod-name> -o yaml        # Get full pod configuration in YAML f
 kubectl get pod -o wide                   # Show pods with extra node and IP details
 kubectl port-forward <pod-name> 8080:80   # Forward local port 8080 to port 80 on the pod
 kubectl exec -it <pod-name> -- /bin/bash  # Enter container bash shell (bash can also be changed to sh)
-```
+kubectl config set -context --current --namespace=mealie # Change the current namespace to a different one
+kubetctl delete pods <pod-name>           # Delete pod
 
 ## 🛠️ Troubleshooting
 
