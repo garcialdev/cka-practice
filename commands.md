@@ -8,21 +8,33 @@ Feel free to fork or clone this file to your GitHub repo!
 ## 🚀 Pod Management
 
 ```bash
-kubectl get pods                          # List all pods in the current namespace
-kubectl get pods -A                       # List all pods across all namespaces
-kubectl describe pod <pod-name>           # Show detailed information about a specific pod
-kubectl logs <pod-name>                   # Display logs for a specific pod
-kubectl logs -f <pod-name>                # Stream pod logs in real time
-kubectl exec -it <pod-name> -- /bin/bash  # Open an interactive shell inside the pod
-kubectl delete pod <pod-name>             # Delete a specific pod
-kubectl get pod <pod-name> -o yaml        # Get full pod configuration in YAML format
-kubectl get pod -o wide                   # Show pods with extra node and IP details
-kubectl port-forward <pod-name> 8080:80   # Forward local port 8080 to port 80 on the pod
-kubectl exec -it <pod-name> -- /bin/bash  # Enter container bash shell (bash can also be changed to sh)
+kubectl get pods                                # List all pods in the current namespace
+kubectl get pods -A                             # List all pods across all namespaces
+kubectl get pods --field-selector=status.phase=Running  # List only running pods
+kubectl describe pod <pod-name>                 # Show detailed information about a specific pod
+kubectl logs <pod-name>                         # Display logs for a specific pod
+kubectl logs -f <pod-name>                      # Stream pod logs in real time
+kubectl exec -it <pod-name> -- /bin/bash        # Open an interactive shell inside the pod
+kubectl delete pod <pod-name>                   # Delete a specific pod
+kubectl get pod <pod-name> -o yaml              # Get full pod configuration in YAML format
+kubectl get pod -o wide                         # Show pods with extra node and IP details
+kubectl port-forward <pod-name> 8080:80         # Forward local port 8080 to port 80 on the pod
+kubectl exec -it <pod-name> -- /bin/bash        # Enter container bash shell (bash can also be changed to sh)
 kubectl config set -context --current --namespace=mealie # Change the current namespace to a different one
-kubetctl delete pods <pod-name>           # Delete pod
+kubectl delete pods <pod-name>                  # Delete pod by name
+kubectl get deployments.apps                    # Show all deployments
+kubectl delete deployments.apps <deployment-name> # Delete a deployment by name
 ```
 
+## 📦 Deployment Management
+```bash
+kubectl create deployment hello-world --image=nginx --dry-run=client -o yaml > hello-world-deployment.yaml # Create a deployment YAML file for nginx
+kubectl apply -f hello-world-deployment.yaml   # Apply the deployment configuration from a YAML file
+kubectl create service nodeport hello-world --tcp=8080:8080 --dry-run=client -o yaml > hello-world-service.yaml
+kubectl apply -f hello-world-service.yaml    # Create and apply a NodePort service for the deployment
+```
+
+```bash
 ## 🌐 networking
 
 ```bash
