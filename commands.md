@@ -21,9 +21,23 @@ kubectl port-forward <pod-name> 8080:80   # Forward local port 8080 to port 80 o
 kubectl exec -it <pod-name> -- /bin/bash  # Enter container bash shell (bash can also be changed to sh)
 kubectl config set -context --current --namespace=mealie # Change the current namespace to a different one
 kubetctl delete pods <pod-name>           # Delete pod
+```
+
+## 🌐 networking
+
+```bash
+kubectl port-forward pods/mealie-7b67c49d9-szrxl 9000 # Temporarily expose an app in a particular port
+```
+
 
 ## 🛠️ Troubleshooting
 
 ```bash
 watch -n 1 "kubectl get pods" # Run the command continually in the desired interval. Helpful for monitoring pods
+```
+
+## 👩🏽‍💻 Vim tips
+```bash
+# This command will search for the word test and replace it with frontend globally
+:%s/test/frontend/g 
 ```
