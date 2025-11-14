@@ -11,6 +11,7 @@ Feel free to fork or clone this file to your GitHub repo!
 kubectl get pods                                # List all pods in the current namespace
 kubectl get pods -A                             # List all pods across all namespaces
 kubectl get pods --field-selector=status.phase=Running  # List only running pods
+kubectl get all                                 # List all resources in the current namespace
 kubectl describe pod <pod-name>                 # Show detailed information about a specific pod
 kubectl logs <pod-name>                         # Display logs for a specific pod
 kubectl logs -f <pod-name>                      # Stream pod logs in real time
@@ -46,6 +47,7 @@ kubectl port-forward pods/mealie-7b67c49d9-szrxl 9000 # Temporarily expose an ap
 
 ```bash
 watch -n 1 "kubectl get pods" # Run the command continually in the desired interval. Helpful for monitoring pods
+kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm configuration
 ```
 
 ## 👩🏽‍💻 Vim tips
