@@ -46,6 +46,7 @@ kubectl port-forward pods/mealie-7b67c49d9-szrxl 9000 # Temporarily expose an ap
 ## 🛠️ Troubleshooting
 
 ```bash
+kubectl edit pod <pod-name>                  # Edit the configuration of a specific pod
 watch -n 1 "kubectl get pods" # Run the command continually in the desired interval. Helpful for monitoring pods
 kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm configuration
 ```
