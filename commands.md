@@ -56,3 +56,16 @@ kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm confi
 # This command will search for the word test and replace it with frontend globally
 :%s/test/frontend/g 
 ```
+
+## 📚 Additional Resources
+
+#### 📦 Helm
+```bash
+helm repo add stable https://charts.helm.sh/stable  # Add the stable Helm chart repository
+helm install my-release stable/nginx-ingress        # Install the NGINX Ingress Controller using Helm
+helm list                                          # List all Helm releases
+helm uninstall my-release                           # Uninstall a Helm release
+helm search hub ghost                             # Search for the 'ghost' chart in Helm Hub
+helm show values stable/ghost > ghost-values.yaml  # Get default values for the ghost chart and save to a file
+helm install my-ghost stable/ghost -f ghost-values.yaml # Install the ghost chart with custom values
+```
