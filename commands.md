@@ -25,6 +25,7 @@ kubectl config set -context --current --namespace=mealie # Change the current na
 kubectl delete pods <pod-name>                  # Delete pod by name
 kubectl get deployments.apps                    # Show all deployments
 kubectl delete deployments.apps <deployment-name> # Delete a deployment by name
+kubectl config get-contexts                      # List all available contexts
 ```
 
 ## 📦 Deployment Management
@@ -53,8 +54,8 @@ kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm confi
 
 ## 👩🏽‍💻 Vim tips
 ```bash
-# This command will search for the word test and replace it with frontend globally
-:%s/test/frontend/g 
+:%s/test/frontend/g  # Replace all occurrences of 'test' with 'frontend' in the current file
+vim -O loadbalancer.yaml ../mealie/service.yaml  # Open multiple files side by side in vim
 ```
 
 ## 📚 Additional Resources
