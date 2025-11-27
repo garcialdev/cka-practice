@@ -25,7 +25,8 @@ kubectl config set -context --current --namespace=mealie # Change the current na
 kubectl delete pods <pod-name>                  # Delete pod by name
 kubectl get deployments.apps                    # Show all deployments
 kubectl delete deployments.apps <deployment-name> # Delete a deployment by name
-kubectl config get-contexts                      # List all available contexts
+kubectl config get-contexts                     # List all available contexts
+kubectl explain pod.spec                        # Get detailed information about pod specifications
 ```
 
 ## 📦 Deployment Management
@@ -69,4 +70,5 @@ helm uninstall my-release                           # Uninstall a Helm release
 helm search hub ghost                             # Search for the 'ghost' chart in Helm Hub
 helm show values stable/ghost > ghost-values.yaml  # Get default values for the ghost chart and save to a file
 helm install my-ghost stable/ghost -f ghost-values.yaml # Install the ghost chart with custom values
+helm upgrade prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --values values.yaml # Upgrade an existing Helm release with new values
 ```
