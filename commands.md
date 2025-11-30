@@ -72,3 +72,15 @@ helm show values stable/ghost > ghost-values.yaml  # Get default values for the 
 helm install my-ghost stable/ghost -f ghost-values.yaml # Install the ghost chart with custom values
 helm upgrade prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --values values.yaml # Upgrade an existing Helm release with new values
 ```
+
+# basgrc shortcuts
+
+```bash
+alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
+alias cls='clear'
+alias k='kubectl'
+source /etc/bash_completion
+source <(kubectl completion bash)
+complete -F __start_kubectl k
+alias kgp='kubectl get pods'
+```
