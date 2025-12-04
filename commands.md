@@ -52,6 +52,7 @@ kubectl edit pod <pod-name>                  # Edit the configuration of a speci
 watch -n 1 "kubectl get pods" # Run the command continually in the desired interval. Helpful for monitoring pods
 kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm configuration
 | grep -A 10   # Search and list 10 lines after the match
+kubectl run -n <namespace> tmp-shell --rm -it --image=busybox -- /bin/sh # Create a temporary pod for testing network connectivity
 ```
 
 ## 👩🏽‍💻 Vim tips
