@@ -37,6 +37,16 @@ kubectl create service nodeport hello-world --tcp=8080:8080 --dry-run=client -o 
 kubectl apply -f hello-world-service.yaml    # Create and apply a NodePort service for the deployment
 ```
 
+## 💾 Storage
+
+```bash
+kubectl get pvc                                 # List all Persistent Volume Claims
+kubectl get pv                                  # List all Persistent Volumes   
+kubectl -n longhorn-system get nodes.longhorn.io # List Longhorn nodes
+kubectl -n longhorn-system get volumes.longhorn.io # List Longhorn volumes
+```
+
+
 ## 🌐 networking
 
 ```bash
