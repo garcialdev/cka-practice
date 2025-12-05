@@ -37,7 +37,6 @@ kubectl create service nodeport hello-world --tcp=8080:8080 --dry-run=client -o 
 kubectl apply -f hello-world-service.yaml    # Create and apply a NodePort service for the deployment
 ```
 
-```bash
 ## 🌐 networking
 
 ```bash
@@ -75,7 +74,13 @@ helm install my-ghost stable/ghost -f ghost-values.yaml # Install the ghost char
 helm upgrade prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --values values.yaml # Upgrade an existing Helm release with new values
 ```
 
-# basgrc shortcuts
+## Helpful linux commands
+
+```bash
+find . -name "*:Zone.Identifier" -type f -delete  # Remove Zone.Identifier files created by Windows
+```
+
+# bashrc shortcuts
 
 ```bash
 alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
