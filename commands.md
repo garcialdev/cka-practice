@@ -27,6 +27,7 @@ kubectl get deployments.apps                    # Show all deployments
 kubectl delete deployments.apps <deployment-name> # Delete a deployment by name
 kubectl config get-contexts                     # List all available contexts
 kubectl explain pod.spec                        # Get detailed information about pod specifications
+kubectl rollout restart deployment ghost-on-kubernetes -n ghost # Restart a deployment to apply changes
 ```
 
 ## 📦 Deployment Management
@@ -44,6 +45,7 @@ kubectl get pvc                                 # List all Persistent Volume Cla
 kubectl get pv                                  # List all Persistent Volumes   
 kubectl -n longhorn-system get nodes.longhorn.io # List Longhorn nodes
 kubectl -n longhorn-system get volumes.longhorn.io # List Longhorn volumes
+k describe pv pvc-3f3b454b-d8ec-4f2b-a3e2-68c059f7a8e5 -o yaml # Describe a specific Persistent Volume in detail
 ```
 
 
@@ -62,6 +64,8 @@ watch -n 1 "kubectl get pods" # Run the command continually in the desired inter
 kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm configuration
 | grep -A 10   # Search and list 10 lines after the match
 kubectl run -n <namespace> tmp-shell --rm -it --image=busybox -- /bin/sh # Create a temporary pod for testing network connectivity
+kubectl describe node server1 | grep -A5 DiskPressure
+ubectl describe node | grep -A5 Conditions
 ```
 
 ## 👩🏽‍💻 Vim tips
