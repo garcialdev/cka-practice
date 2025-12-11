@@ -79,8 +79,10 @@ vim -O loadbalancer.yaml ../mealie/service.yaml  # Open multiple files side by s
 #### 📦 Helm
 ```bash
 helm repo add stable https://charts.helm.sh/stable  # Add the stable Helm chart repository
+helm repo update                                 # Update Helm chart repositories
 helm install my-release stable/nginx-ingress        # Install the NGINX Ingress Controller using Helm
 helm list                                          # List all Helm releases
+helm search repo -l cloudflare                     # Search for Cloudflare charts in Helm repositories
 helm uninstall my-release                           # Uninstall a Helm release
 helm search hub ghost                             # Search for the 'ghost' chart in Helm Hub
 helm show values stable/ghost > ghost-values.yaml  # Get default values for the ghost chart and save to a file
