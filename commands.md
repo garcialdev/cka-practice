@@ -45,7 +45,8 @@ kubectl get pvc                                 # List all Persistent Volume Cla
 kubectl get pv                                  # List all Persistent Volumes   
 kubectl -n longhorn-system get nodes.longhorn.io # List Longhorn nodes
 kubectl -n longhorn-system get volumes.longhorn.io # List Longhorn volumes
-k describe pv pvc-3f3b454b-d8ec-4f2b-a3e2-68c059f7a8e5 -o yaml # Describe a specific Persistent Volume in detail
+kubectl describe pv pvc-3f3b454b-d8ec-4f2b-a3e2-68c059f7a8e5 -o yaml # Describe a specific Persistent Volume in detail
+kubectl get storageclasses.storage.k8s.io
 ```
 
 
