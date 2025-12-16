@@ -94,6 +94,7 @@ helm upgrade prometheus-stack prometheus-community/kube-prometheus-stack -n moni
 
 ```bash
 find . -name "*:Zone.Identifier" -type f -delete  # Remove Zone.Identifier files created by Windows
+nc -zv <your-ip-address> <your-port-number> # Check if a specific port is open on a remote server
 ```
 
 # bashrc shortcuts
