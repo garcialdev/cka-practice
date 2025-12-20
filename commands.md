@@ -67,6 +67,7 @@ kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm confi
 kubectl run -n <namespace> tmp-shell --rm -it --image=busybox -- /bin/sh # Create a temporary pod for testing network connectivity
 kubectl describe node server1 | grep -A5 DiskPressure
 ubectl describe node | grep -A5 Conditions
+kubectl logs -l name=<label name>
 ```
 
 ## 👩🏽‍💻 Vim tips
