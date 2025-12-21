@@ -96,6 +96,7 @@ helm upgrade prometheus-stack prometheus-community/kube-prometheus-stack -n moni
 
 ```bash
 find . -name "*:Zone.Identifier" -type f -delete  # Remove Zone.Identifier files created by Windows
+du	                                              # Check the size of a folder and its content
 ```
 
 # bashrc shortcuts
