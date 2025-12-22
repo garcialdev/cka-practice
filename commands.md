@@ -45,7 +45,8 @@ kubectl get pvc                                 # List all Persistent Volume Cla
 kubectl get pv                                  # List all Persistent Volumes   
 kubectl -n longhorn-system get nodes.longhorn.io # List Longhorn nodes
 kubectl -n longhorn-system get volumes.longhorn.io # List Longhorn volumes
-k describe pv pvc-3f3b454b-d8ec-4f2b-a3e2-68c059f7a8e5 -o yaml # Describe a specific Persistent Volume in detail
+kubectl describe pv pvc-3f3b454b-d8ec-4f2b-a3e2-68c059f7a8e5 -o yaml # Describe a specific Persistent Volume in detail
+kubectl get storageclasses.storage.k8s.io
 ```
 
 
@@ -65,7 +66,8 @@ kubectl -n kube-system get configmap kubeadm-config -o yaml # View kubeadm confi
 | grep -A 10   # Search and list 10 lines after the match
 kubectl run -n <namespace> tmp-shell --rm -it --image=busybox -- /bin/sh # Create a temporary pod for testing network connectivity
 kubectl describe node server1 | grep -A5 DiskPressure
-ubectl describe node | grep -A5 Conditions
+kubectl describe node | grep -A5 Conditions
+kubectl logs -l name=<label name>
 ```
 
 ## 👩🏽‍💻 Vim tips
@@ -94,6 +96,8 @@ helm upgrade prometheus-stack prometheus-community/kube-prometheus-stack -n moni
 
 ```bash
 find . -name "*:Zone.Identifier" -type f -delete  # Remove Zone.Identifier files created by Windows
+du	                                              # Check the size of a folder and its content
+rsync	                                            # Sync items between two systems over a network
 nc -zv <your-ip-address> <your-port-number> # Check if a specific port is open on a remote server
 ```
 
