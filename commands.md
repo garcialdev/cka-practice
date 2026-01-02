@@ -8,6 +8,7 @@ Feel free to fork or clone this file to your GitHub repo!
 ## 🚀 Pod Management
 
 ```bash
+kubectl cluster-info                            # Check cluster info
 kubectl get pods                                # List all pods in the current namespace
 kubectl get pods -A                             # List all pods across all namespaces
 kubectl get pods --field-selector=status.phase=Running  # List only running pods
