@@ -13,6 +13,8 @@ This guide covers installing Kubernetes (kubeadm, kubelet, kubectl) and containe
 
 ## Step 1: System Preparation
 
+Login to your server and let's run the following commands.
+
 Update the system and disable swap (required for Kubernetes):
 
 ```bash
@@ -53,8 +55,7 @@ Check available versions first to avoid 404 errors:
 ```bash
 apt-cache madison containerd.io
 ```
-
-Install a working version (avoid 2.2.1 if it shows 404 errors):
+I had issues with the latest version so if there is a problem try a previous version. I installed 1.7.29 since 2.2.1 was giving me problems. 
 
 ```bash
 # Option 1: Install latest stable 1.7.x version
