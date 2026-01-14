@@ -6,3 +6,6 @@ I wil be updating this repository with things that I have learned and am current
 
 The commands.md file contains useful kubectl commands that can be used for general kubernetes management and troubleshooting.
 
+### Kubeadm install
+
+Under the docs folder are instructions on how to install kubeadm
