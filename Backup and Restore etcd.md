@@ -73,3 +73,194 @@ etcd-controlplane                      1/1     Running   0          3m56s
 ```
 
 In case the Pod doesn't transition into the Running status, try to delete it manually with the command kubectl delete pod etcd-controlplane -n kube-system.
+
+#### Working code for my node
+
+```bash
+ kubectl exec -n kube-system etcd-k1 -- sh -c '
+ETCDCTL_API=3 etcdctl snapshot save /var/lib/etcd/etcd.bak \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key
+'
+```
+
+
+1️⃣ What kubectl exec actually does
+
+When you run:
+
+kubectl exec POD -- some-command
+
+
+Kubernetes does NOT run a shell by default.
+
+It directly tries to execute exactly what comes after -- as a binary inside the container.
+
+So Kubernetes behaves like:
+
+execve("some-command", ["some-command", ...])
+
+
+No shell.
+No variable expansion.
+No pipes.
+No VAR=value handling.
+
+2️⃣ Why this did NOT work earlier
+
+You tried something like:
+
+kubectl exec ... -- ETCDCTL_API=3 etcdctl snapshot save ...
+
+
+Kubernetes interpreted this as:
+
+Run a binary named: ETCDCTL_API=3
+
+
+Which obviously doesn’t exist.
+
+Hence the error:
+
+exec: "ETCDCTL_API=3": executable file not found in $PATH
+
+
+💡 Key point:
+VAR=value command is shell syntax, not Linux process syntax.
+
+3️⃣ Why your working command does work
+
+Your successful command:
+
+```bash
+kubectl exec -n kube-system etcd-k1 -- sh -c '
+ETCDCTL_API=3 etcdctl snapshot save /var/lib/etcd/etcd.bak \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key
+'
+```
+What actually happens
+
+Kubernetes executes one real binary:
+
+```bash
+sh
+```
+
+sh receives the -c flag, meaning:
+
+“Run the following string as shell code”
+
+Inside the shell:
+```bash
+ETCDCTL_API=3 is correctly treated as an environment variable
+```
+
+etcdctl is found in $PATH
+
+Arguments are parsed normally
+
+So the shell does the job Kubernetes won’t do on its own.
+
+4️⃣ Why this is especially important for etcd containers
+
+The etcd image (registry.k8s.io/etcd) is:
+
+Minimal
+
+No systemd
+
+No login shell
+
+No interactive environment
+
+Often distroless or near-distroless
+
+That means:
+
+You must be very explicit
+
+You only get what’s already inside the container
+
+Shell parsing must be deliberate
+
+5️⃣ Two valid patterns (remember these)
+✅ Pattern A — Use a shell
+kubectl exec POD -- sh -c 'VAR=value command args'
+
+
+✔ Best when you need:
+
+env vars
+
+pipes
+
+redirects
+
+multiple commands
+
+✅ Pattern B — Use env (no shell)
+kubectl exec POD -- env VAR=value command args
+
+
+✔ Best when:
+
+container has no shell
+
+you want maximum reliability
+
+For etcd both work, but env is technically cleaner.
+
+6️⃣ Mental model (this clicks fast)
+
+Think of it like this:
+
+Context	Who parses the command?
+SSH	Shell
+Local terminal	Shell
+kubectl exec	❌ Nobody
+kubectl exec -- sh -c	Shell
+
+If no shell runs, shell syntax won’t work.
+
+7️⃣ Why this mattered for your PVC / Calico saga
+
+You’ve been dealing with:
+
+Minimal containers
+
+Broken networking
+
+kubeadm static pods
+
+CSI dependencies
+
+Calico cert issues
+
+Understanding this distinction explains:
+
+Why binaries “don’t exist”
+
+Why env vars fail
+
+Why some containers feel “locked down”
+
+This knowledge is cluster-admin-level knowledge.
+
+✅ Final takeaway (bookmark this)
+
+kubectl exec does not run a shell unless you explicitly start one.
+
+Once that clicks, 80% of exec-related errors disappear.
+
+If you want, next we can:
+
+🔐 Automate etcd backups safely
+
+🔁 Walk through a restore drill
+
+🧪 Simulate etcd failure and recovery
+
+📦 Export snapshots off-node securely
