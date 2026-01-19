@@ -42,12 +42,16 @@ kubectl apply -f hello-world-service.yaml    # Create and apply a NodePort servi
 ## 👤 User Management
 ```bash
 openssl genrsa -out user.key 2048                  # Generate a private key for user 'user' 
-openssl req -new -key user.key -out luis.csr -subj "/CN=user/O=readers"
+openssl req -new -key user.key -out user.csr -subj "/CN=user/O=readers"
 kubectl auth can-i list pods --as johndoe          # Check if user 'johndoe' can list pods
 kubectl auth can-i get pods --as johndoe           # Check if user 'johndoe' can get pods
 kubectl auth can-i watch pods --as johndoe         # Check if user 'johndoe' can watch pods
 kubectl auth can-i delete pods --as johndoe        # Check if user 'johndoe' can delete pods
+kubectl config use-context <user@k8s>              # Switch to the context for user 'user'
 ```
+
+A quick guide on how to create a user [Example Guide](docs/create_user.md)
+
 
 ## 💾 Storage   
 
