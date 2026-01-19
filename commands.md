@@ -49,9 +49,7 @@ kubectl auth can-i watch pods --as johndoe         # Check if user 'johndoe' can
 kubectl auth can-i delete pods --as johndoe        # Check if user 'johndoe' can delete pods
 ```
 
-[[docs/yaml-examples]]
-
-## 💾 Storage
+## 💾 Storage   
 
 ```bash
 kubectl get pvc                                 # List all Persistent Volume Claims
