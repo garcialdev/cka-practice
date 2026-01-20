@@ -8,7 +8,6 @@ Feel free to fork or clone this file to your GitHub repo!
 ## 🚀 Pod Management
 
 ```bash
-kubectl cluster-info                            # Check cluster info
 kubectl get pods                                # List all pods in the current namespace
 kubectl get pods -A                             # List all pods across all namespaces
 kubectl get pods --field-selector=status.phase=Running  # List only running pods
@@ -22,6 +21,7 @@ kubectl get pod <pod-name> -o yaml              # Get full pod configuration in 
 kubectl get pod -o wide                         # Show pods with extra node and IP details
 kubectl port-forward <pod-name> 8080:80         # Forward local port 8080 to port 80 on the pod
 kubectl exec -it <pod-name> -- /bin/bash        # Enter container bash shell (bash can also be changed to sh)
+kubectl config current-context                  # Show the current context
 kubectl config set -context --current --namespace=mealie # Change the current namespace to a different one
 kubectl delete pods <pod-name>                  # Delete pod by name
 kubectl get deployments.apps                    # Show all deployments
@@ -39,7 +39,21 @@ kubectl create service nodeport hello-world --tcp=8080:8080 --dry-run=client -o 
 kubectl apply -f hello-world-service.yaml    # Create and apply a NodePort service for the deployment
 ```
 
-## 💾 Storage
+## 👤 User Management
+```bash
+openssl genrsa -out user.key 2048                  # Generate a private key for user 'user' 
+openssl req -new -key user.key -out user.csr -subj "/CN=user/O=readers"
+kubectl auth can-i list pods --as johndoe          # Check if user 'johndoe' can list pods
+kubectl auth can-i get pods --as johndoe           # Check if user 'johndoe' can get pods
+kubectl auth can-i watch pods --as johndoe         # Check if user 'johndoe' can watch pods
+kubectl auth can-i delete pods --as johndoe        # Check if user 'johndoe' can delete pods
+kubectl config use-context <user@k8s>              # Switch to the context for user 'user'
+```
+
+A quick guide on how to create a user [Example Guide](docs/create_user.md)
+
+
+## 💾 Storage   
 
 ```bash
 kubectl get pvc                                 # List all Persistent Volume Claims
@@ -69,7 +83,14 @@ kubectl run -n <namespace> tmp-shell --rm -it --image=busybox -- /bin/sh # Creat
 kubectl describe node server1 | grep -A5 DiskPressure
 kubectl describe node | grep -A5 Conditions
 kubectl logs -l name=<label name>
+kbuectl drain <node-name> --ignore-daemonsets --delete-local-data # Safely drain a node for maintenance
 ```
+
+### 🗄️ Backup & Restore etcd Management
+
+```bash
+sudo ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /opt/etcd.bakkup  # Backup etcd data
+
 
 ## 👩🏽‍💻 Vim tips
 ```bash
