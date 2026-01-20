@@ -8,4 +8,4 @@ The commands.md file contains useful kubectl commands that can be used for gener
 
 ### Kubeadm install
 
-Under the docs folder are instructions on how to install kubeadm
+Under the docs folder are further examples and instructions 
