@@ -29,6 +29,7 @@ kubectl delete deployments.apps <deployment-name> # Delete a deployment by name
 kubectl config get-contexts                     # List all available contexts
 kubectl explain pod.spec                        # Get detailed information about pod specifications
 kubectl rollout restart deployment ghost-on-kubernetes -n ghost # Restart a deployment to apply changes
+kubectl get secrets -A                          # List all secrets on all namespaces
 ```
 
 ## 📦 Deployment Management
