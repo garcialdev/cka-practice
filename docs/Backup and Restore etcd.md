@@ -100,7 +100,7 @@ $ sudo ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/et
 ❌ did not work
 
 
-1️⃣  What kubectl exec actually does
+##### 1️⃣ What kubectl exec actually does
 
 When you run:
 
@@ -122,7 +122,7 @@ No variable expansion.
 No pipes.
 No VAR=value handling.
 
-2️⃣ Why this did NOT work earlier
+##### 2️⃣ Why this did NOT work earlier
 
 You tried something like:
 ```bash
@@ -145,7 +145,7 @@ exec: "ETCDCTL_API=3": executable file not found in $PATH
 💡 Key point:
 VAR=value command is shell syntax, not Linux process syntax.
 
-3️⃣ Why your working command does work
+##### 3️⃣ Why your working command does work
 
 Your successful command:
 
@@ -178,7 +178,7 @@ Arguments are parsed normally
 
 So the shell does the job Kubernetes won’t do on its own.
 
-4️⃣ Why this is especially important for etcd containers
+##### 4️⃣ Why this is especially important for etcd containers
 
 The etcd image (registry.k8s.io/etcd) is:
 
@@ -200,7 +200,7 @@ You only get what’s already inside the container
 
 Shell parsing must be deliberate
 
-5️⃣ Two valid patterns (remember these)
+##### 5️⃣ Two valid patterns (remember these)
 ✅ Pattern A — Use a shell
 ```bash
 kubectl exec POD -- sh -c 'VAR=value command args'
@@ -229,7 +229,7 @@ you want maximum reliability
 
 For etcd both work, but env is technically cleaner.
 
-6️⃣ Mental model (this clicks fast)
+##### 6️⃣ Mental model (this clicks fast)
 
 Think of it like this:
 
@@ -241,7 +241,7 @@ kubectl exec -- sh -c	Shell
 
 If no shell runs, shell syntax won’t work.
 
-7️⃣ Why this mattered for your PVC / Calico saga
+##### 7️⃣ Why this mattered for your PVC / Calico saga
 
 You’ve been dealing with:
 
