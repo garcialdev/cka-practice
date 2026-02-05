@@ -85,7 +85,8 @@ kubectl run -n <namespace> tmp-shell --rm -it --image=busybox -- /bin/sh # Creat
 kubectl describe node server1 | grep -A5 DiskPressure
 kubectl describe node | grep -A5 Conditions
 kubectl logs -l name=<label name>
-kbuectl drain <node-name> --ignore-daemonsets --delete-local-data # Safely drain a node for maintenance
+kubuctl drain <node-name> --ignore-daemonsets --delete-local-data # Safely drain a node for maintenance
+kubectl delete pods <pod> --grace-period=0 --force # Force delete pod
 ```
 
 ### 🗄️ Backup & Restore etcd Management
