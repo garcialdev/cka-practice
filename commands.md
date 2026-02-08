@@ -30,6 +30,7 @@ kubectl config get-contexts                     # List all available contexts
 kubectl explain pod.spec                        # Get detailed information about pod specifications
 kubectl rollout restart deployment ghost-on-kubernetes -n ghost # Restart a deployment to apply changes
 kubectl get secrets -A                          # List all secrets on all namespaces
+kubectl get nodes -o wide                       # list all nodes in detail
 ```
 
 ## 📦 Deployment Management
