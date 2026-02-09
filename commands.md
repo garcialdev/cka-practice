@@ -88,6 +88,8 @@ kubectl describe node | grep -A5 Conditions
 kubectl logs -l name=<label name>
 kubuctl drain <node-name> --ignore-daemonsets --delete-local-data # Safely drain a node for maintenance
 kubectl delete pods <pod> --grace-period=0 --force # Force delete pod
+kubectl cluster-info                               # Display addresses of the control plane and services
+kubectl cluster-info                               # Dump cluster information out suitable for debugging and diagnosing cluster problems.
 ```
 
 ### 🗄️ Backup & Restore etcd Management
