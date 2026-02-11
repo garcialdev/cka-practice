@@ -67,13 +67,11 @@ kubectl describe pv pvc-3f3b454b-d8ec-4f2b-a3e2-68c059f7a8e5 -o yaml # Describe 
 kubectl get storageclasses.storage.k8s.io
 ```
 
-
 ## 🌐 networking
 
 ```bash
 kubectl port-forward pods/mealie-7b67c49d9-szrxl 9000 # Temporarily expose an app in a particular port
 ```
-
 
 ## 🛠️ Troubleshooting
 
