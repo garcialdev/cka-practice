@@ -55,7 +55,6 @@ kubectl config use-context <user@k8s>              # Switch to the context for u
 
 A quick guide on how to create a user [Example Guide](docs/create_user.md)
 
-
 ## 💾 Storage   
 
 ```bash
