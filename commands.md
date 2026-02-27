@@ -86,8 +86,8 @@ kubectl logs -l name=<label name>
 kubuctl drain <node-name> --ignore-daemonsets --delete-local-data # Safely drain a node for maintenance
 kubectl delete pods <pod> --grace-period=0 --force # Force delete pod
 kubectl cluster-info                               # Display addresses of the control plane and services
-kubectl debug -it mypod --image=busybox --target=myapp
-kubectl run tmp-shell --rm -it --image=busybox -- sh 
+kubectl debug -it mypod --image=busybox --target=myapp 
+kubectl run tmp-shell --rm -it --image=busybox -- sh  # Create a temporary pod for testing
 ```
 
 ### 🗄️ Backup & Restore etcd Management
